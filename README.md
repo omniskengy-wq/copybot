@@ -54,6 +54,11 @@ There is no automatic live-trading installer. Building does not start the bot, a
 
 ## Verify the source
 
+GitHub Actions is the primary routine CI, diagnostics, and certification surface while
+the Syntharian self-hosted runner fleet is healthy. CircleCI remains an independent
+secondary clean-room, second-opinion, and fallback certification surface when enabled;
+neither surface replaces the repository's release and runtime safety checks.
+
 ```sh
 cargo test --locked --manifest-path hot/Cargo.toml --lib --bin copybot-hot
 python3 -m venv .venv
