@@ -1,0 +1,49 @@
+schema_version: syntharian-verification-contract-v1
+repository: "omniskengy-wq/copybot"
+status: provisional
+
+worker_pre_pr:
+  commands:
+    []
+  notes:
+    - "No worker-safe command set is independently certified yet; product_enabled must remain false until HQ certifies this contract."
+
+exact_head:
+  provider: github_actions
+  runner_labels:
+    - self-hosted
+    - Linux
+    - X64
+    - syntharian
+  required_checks:
+    []
+  exact_sha_required: true
+  notes:
+    - "QUEUED with zero executed steps on PR #2 exact head ffe1abd9b70f6b6e2a2f35d25faf2d1a75d0a6bc"
+
+secondary:
+  provider: circleci
+  preserved: true
+  required_for_merge: false
+  checks:
+    []
+  notes:
+    - "NOT_EXERCISED / no status observed"
+
+specialist_gates:
+  - "Rust/Python source-package verification and runtime safety checks"
+forbidden_actions:
+  - "access secrets or .env files"
+  - "push, merge, deploy, release, sign, broadcast, move funds, or mutate live capital"
+  - "perform destructive production database or infrastructure mutations during verification"
+  - "weaken tests, safety gates, evidence requirements, risk limits, or fail-closed behavior to manufacture green"
+forbidden_paths:
+  []
+evidence_requirements:
+  - "worker pre-PR proof and exact-head certification must remain distinct"
+  - "all required GitHub checks must genuinely execute on the exact published SHA before certification"
+  - "queued, skipped-without-authority, stale, or superseded checks are never represented as green"
+  - "CircleCI secondary failures remain visible and diagnosable even when primary GitHub certification passes"
+notes:
+  - "CI estate classification: GITHUB_RUNNER_BLOCKED_CIRCLE_FALLBACK_UNEXERCISED"
+  - "Provisional only; product authority remains disabled."
