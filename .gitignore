@@ -19,8 +19,14 @@
 **/dist/
 **/node_modules/
 **/__pycache__/
+*.py[cod]
 **/.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 **/.venv/
+venv/
+.coverage
+htmlcov/
 **/data/
 **/run/
 **/control/
@@ -29,3 +35,4 @@
 deploy/copybot2.toml
 *.local.*
 .DS_Store
+Thumbs.db
